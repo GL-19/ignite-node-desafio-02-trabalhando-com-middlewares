@@ -45,10 +45,7 @@ function checksTodoExists(request, response, next) {
     return response.status(404).json({ error: "User not found" });
   }
 
-  const validUUIDRegex =
-    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
-
-  const validId = validUUIDRegex.test(id);
+  const validId = validate(id);
 
   if (!validId) {
     return response.status(400).json({ error: "Invalid Id" });
